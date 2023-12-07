@@ -13,8 +13,8 @@ RUN cargo install onedrive-fuse
 
 # TODO: auth
 
-COPY scripts/auth.sh /scripts/auth.sh
+COPY scripts/auth.sh /scripts/
 RUN chmod +x /scripts/auth.sh
 
 WORKDIR /onedrive
-CMD ./auth && onedrive-fuse mount /onedrive
+CMD onedrive-fuse login --client-id "$CLIENT_ID" $ACCESS && onedrive-fuse mount /onedrive
